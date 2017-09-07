@@ -1,0 +1,5 @@
+colors reference: material design
+https://www.materialui.co/colors
+
+background color:
+263238 - BLUE GREY 900
