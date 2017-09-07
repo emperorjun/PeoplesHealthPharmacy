@@ -1,4 +1,4 @@
-colors reference: material design
+colors reference: material design guidelines
 https://www.materialui.co/colors
 
 background color:
