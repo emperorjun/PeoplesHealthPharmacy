@@ -21,14 +21,14 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <!-- page navigation -->
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active ml-2">
-            <a class="nav-link" href="#/overview"><i class="fa fa-tachometer"></i> Overview</a>
+          <li class="nav-item ml-2">
+            <a class="nav-link" href="#/overview" ng-click="headerContent='Overview';headerIcon='fa fa-tachometer'"><i class="fa fa-tachometer"></i> Overview</a>
           </li>
           <li class="nav-item ml-2">
-            <a class="nav-link" href="#/stockpile"><i class="fa fa-archive"></i> Stockpile</a>
+            <a class="nav-link" href="#/stockpile" ng-click="headerContent='Stockpile';headerIcon='fa fa-archive'"><i class="fa fa-archive"></i> Stockpile</a>
           </li>
           <li class="nav-item ml-2">
-            <a class="nav-link" href="#/salesRecord"><i class="fa fa-line-chart"></i> Sales Record</a>
+            <a class="nav-link" href="#/salesRecord" ng-click="headerContent='Sales Record';headerIcon='fa fa-line-chart'"><i class="fa fa-line-chart"></i> Sales Record</a>
           </li>
         </ul>
         <!-- SignIn or SignOut -->
@@ -46,11 +46,11 @@
       </div>
     </nav>
     <!-- Header showing what is the current page -->
-    <header id="main-header" class="bg-info text-white">
+    <header id="main-header" class="bg-info text-white" ng-init="headerContent = 'Overview';headerIcon='fa fa-tachometer'">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h2><i class="fa fa-tachometer"></i> Overview</h2>
+            <h2><i ng-class="headerIcon"></i> {{headerContent}}</h2>
           </div>
         </div>
       </div>
