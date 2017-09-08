@@ -5,7 +5,9 @@ body {
 .mainContent{
   margin-top: 40px;
 }
-
+.navbar{
+  box-shadow: 0 2px 2px 0px #212121;
+}
 .card{
   margin-top: 20px;
 }
@@ -28,6 +30,7 @@ body {
 }
 
 
+/*Adjusment to the default container size of bootstrap*/
 .container {
   max-width: 85em;
   @include make-container();
