@@ -12,6 +12,7 @@
     <link href="/css/style.css" type="text/css" rel="stylesheet" />
   </head>
   <body ng-controller="mainCtrl">
+
     <!-- TOP NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">PEOPLE'S HEALTH PHARMACY</a>
@@ -45,14 +46,15 @@
         </ul>
       </div>
     </nav>
+
     <!-- Header showing what is the current page -->
     <header id="main-header" class="bg-info text-white py-1">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h2 ng-if="$route.current.activetab == 'overview'"><i class="fa fa-tachometer"></i> Overview</h2>
-            <h2 ng-if="$route.current.activetab == 'stockpile'"><i class="fa fa-archive"></i> Stockpile</h2>
-            <h2 ng-if="$route.current.activetab == 'salesRecord'"><i class="fa fa-line-chart"></i> Sales Record</h2>
+            <h3 ng-if="$route.current.activetab == 'overview'"><i class="fa fa-tachometer"></i> Overview</h3>
+            <h3 ng-if="$route.current.activetab == 'stockpile'"><i class="fa fa-archive"></i> Stockpile</h3>
+            <h3 ng-if="$route.current.activetab == 'salesRecord'"><i class="fa fa-line-chart"></i> Sales Record</h3>
           </div>
         </div>
       </div>
