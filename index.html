@@ -11,7 +11,7 @@
     <!-- styling -->
     <link href="/css/style.css" type="text/css" rel="stylesheet" />
   </head>
-  <body>
+  <body ng-controller="mainCtrl">
     <!-- TOP NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">PEOPLE'S HEALTH PHARMACY</a>
@@ -22,13 +22,13 @@
         <!-- page navigation -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item ml-2">
-            <a class="nav-link" href="#/overview" ng-click="headerContent='Overview';headerIcon='fa fa-tachometer'"><i class="fa fa-tachometer"></i> Overview</a>
+            <a class="nav-link" href="#/overview"><i class="fa fa-tachometer"></i> Overview</a>
           </li>
           <li class="nav-item ml-2">
-            <a class="nav-link" href="#/stockpile" ng-click="headerContent='Stockpile';headerIcon='fa fa-archive'"><i class="fa fa-archive"></i> Stockpile</a>
+            <a class="nav-link" href="#/stockpile"><i class="fa fa-archive"></i> Stockpile</a>
           </li>
           <li class="nav-item ml-2">
-            <a class="nav-link" href="#/salesRecord" ng-click="headerContent='Sales Record';headerIcon='fa fa-line-chart'"><i class="fa fa-line-chart"></i> Sales Record</a>
+            <a class="nav-link" href="#/salesRecord"><i class="fa fa-line-chart"></i> Sales Record</a>
           </li>
         </ul>
         <!-- SignIn or SignOut -->
@@ -46,11 +46,13 @@
       </div>
     </nav>
     <!-- Header showing what is the current page -->
-    <header id="main-header" class="bg-info text-white py-1" ng-init="headerContent = 'Overview';headerIcon='fa fa-tachometer'">
+    <header id="main-header" class="bg-info text-white py-1">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h2><i ng-class="headerIcon"></i> {{headerContent}}</h2>
+            <h2 ng-if="$route.current.activetab == 'overview'"><i class="fa fa-tachometer"></i> Overview</h2>
+            <h2 ng-if="$route.current.activetab == 'stockpile'"><i class="fa fa-archive"></i> Stockpile</h2>
+            <h2 ng-if="$route.current.activetab == 'salesRecord'"><i class="fa fa-line-chart"></i> Sales Record</h2>
           </div>
         </div>
       </div>

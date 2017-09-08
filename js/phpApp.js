@@ -6,13 +6,16 @@ phpApp.config(function($routeProvider,$locationProvider){
   $routeProvider
     .when('/overview',{
       templateUrl: '../views/overview.html',
-      controller: 'mainCtrl'
+      controller: 'mainCtrl',
+      activetab: 'overview'
   }).when('/stockpile',{
       templateUrl: '../views/stockpile.html',
-      controller: 'mainCtrl'
+      controller: 'mainCtrl',
+      activetab: 'stockpile'
   }).when('/salesRecord',{
       templateUrl: '../views/salesRecord.html',
-      controller: 'mainCtrl'
+      controller: 'mainCtrl',
+      activetab: 'salesRecord'
   }).otherwise({
     redirectTo: '/overview'
   });
@@ -20,7 +23,8 @@ phpApp.config(function($routeProvider,$locationProvider){
 });
 
 //MAIN CONTROLLER
-phpApp.controller('mainCtrl', function($scope){
+phpApp.controller('mainCtrl', function($scope,$route){
 
+  $scope.$route = $route;
 
 });
