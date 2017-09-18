@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="col-md-2 col-xs-4 text-center my-1">
-            <button type="button" class="btn btn-outline-danger btn-block"><i class="fa fa-eye"></i> Show Restock Only</button>
+            <button type="button" class="btn btn-outline-danger btn-block" data-toggle="button"><i class="fa fa-eye"></i> Show Restock Only</button>
           </div>
           <div class="col-md-2 col-xs-8 my-1">
             <button type="button" class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#AddProductModal"><i class="fa fa-plus"></i> Add Product</button>
@@ -62,7 +62,13 @@
         <tbody>
           <tr>
             <td>Paracetamol</td>
-            <td>7</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary btn-sm">-</button>
+                <button type="button" class="btn btn-secondary btn-sm" disabled>7</button>
+                <button type="button" class="btn btn-secondary btn-sm">+</button>
+              </div>
+            </td>
             <td>$12</td>
             <td><i class="fa fa-check text-success"></i></td>
             <td>
@@ -74,7 +80,13 @@
           </tr>
           <tr>
             <td>Zitromax</td>
-            <td>3</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary btn-sm">-</button>
+                <button type="button" class="btn btn-secondary btn-sm" disabled>3</button>
+                <button type="button" class="btn btn-secondary btn-sm">+</button>
+              </div>
+            </td>
             <td>$200</td>
             <td><i class="fa fa-check text-success"></i></td>
             <td>
@@ -86,7 +98,13 @@
           </tr>
           <tr>
             <td>Vitamin C</td>
-            <td>0</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary btn-sm">-</button>
+                <button type="button" class="btn btn-secondary btn-sm" disabled>0</button>
+                <button type="button" class="btn btn-secondary btn-sm">+</button>
+              </div>
+            </td>
             <td>$8</td>
             <td><span class="badge badge-danger">RESTOCK</span></td>
             <td>
