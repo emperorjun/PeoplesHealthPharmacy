@@ -1,4 +1,32 @@
 <div class="row">
+  <div class="col-md-4 col-xs-12">
+    <div class="card totalItemsCard" style="width: 100%;">
+      <div class="card-body">
+        <h5 class="card-title">Total Items</h5>
+        <p class="card-text">3</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xs-12">
+    <div class="card inStockCard" style="width: 100%;">
+      <div class="card-body">
+        <h5 class="card-title">Items In-stock</h5>
+        <p class="card-text">2</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xs-12">
+    <div class="card outOfStockCard" style="width: 100%;">
+      <div class="card-body">
+        <h5 class="card-title">Items Out-of-stock</h5>
+        <p class="card-text">1</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
   <div class="col-12">
     <div class="card inventoryCard" style="width: 100%;">
       <!-- SEARCHING AND FILTERING THE PRODUCTS IN THE TABLE -->
@@ -7,19 +35,22 @@
           <div class="col-md-6 col-xs-12 my-1">
             <input id="searchProduct" type="text" class="form-control" placeholder="Search products here..." ng-model="searchProductFilter">
           </div>
-          <div class="col-md-3 col-xs-4 text-center my-1">
+          <div class="col-md-2 col-xs-4 text-center my-1">
             <div class="btn-group d-flex" role="group">
               <button type="button" class="btn btn-outline-dark w-100"><i class="fa fa-sort-alpha-asc"></i> </button>
               <button type="button" class="btn btn-outline-dark w-100"><i class="fa fa-sort-alpha-desc"></i> </button>
             </div>
           </div>
-          <div class="col-md-3 col-xs-8 my-1">
-            <button type="button" class="btn btn-outline-success btn-block" data-toggle="modal" data-target="#AddProductModal"><i class="fa fa-plus"></i> Add Product</button>
+          <div class="col-md-2 col-xs-4 text-center my-1">
+            <button type="button" class="btn btn-outline-danger btn-block"><i class="fa fa-eye"></i> Show Restock Only</button>
+          </div>
+          <div class="col-md-2 col-xs-8 my-1">
+            <button type="button" class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#AddProductModal"><i class="fa fa-plus"></i> Add Product</button>
           </div>
         </div>
       </div>
       <!-- TABLE FOR PRODUCTS -->
-      <table class="table table-sm">
+      <table class="table table-sm table-hover">
         <thead>
           <tr>
             <th>Product Name</th>
@@ -57,7 +88,7 @@
             <td>Vitamin C</td>
             <td>0</td>
             <td>$8</td>
-            <td><p class="text-danger">RESTOCK</p></td>
+            <td><span class="badge badge-danger">RESTOCK</span></td>
             <td>
               <div class="btn-group" role="group">
                 <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil"></i></button>
