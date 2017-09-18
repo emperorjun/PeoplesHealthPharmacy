@@ -1,25 +1,108 @@
 <div class="row">
-  <div class="col-md">
-    <div class="card inStockCard" style="width: 100%;">
-      <div class="card-body">
-        <h4 class="card-title">Items in stock</h4>
-        <p class="card-text">72 items</p>
+  <div class="col-12">
+    <div class="card inventoryCard" style="width: 100%;">
+      <!-- SEARCHING AND FILTERING THE PRODUCTS IN THE TABLE -->
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-6 col-xs-12 my-1">
+            <input id="searchProduct" type="text" class="form-control" placeholder="Search products here..." ng-model="searchProductFilter">
+          </div>
+          <div class="col-md-3 col-xs-4 text-center my-1">
+            <div class="btn-group d-flex" role="group">
+              <button type="button" class="btn btn-outline-dark w-100"><i class="fa fa-sort-alpha-asc"></i> </button>
+              <button type="button" class="btn btn-outline-dark w-100"><i class="fa fa-sort-alpha-desc"></i> </button>
+            </div>
+          </div>
+          <div class="col-md-3 col-xs-8 my-1">
+            <button type="button" class="btn btn-outline-success btn-block" data-toggle="modal" data-target="#AddProductModal"><i class="fa fa-plus"></i> Add Product</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="col-md">
-    <div class="card outOfStockCard" style="width: 100%;">
-      <div class="card-body">
-        <h4 class="card-title">Items out of stock</h4>
-        <p class="card-text">4 items</p>
-      </div>
+      <!-- TABLE FOR PRODUCTS -->
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>In Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Paracetamol</td>
+            <td>7</td>
+            <td>$12</td>
+            <td><i class="fa fa-check text-success"></i></td>
+            <td>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil"></i></button>
+                <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Zitromax</td>
+            <td>3</td>
+            <td>$200</td>
+            <td><i class="fa fa-check text-success"></i></td>
+            <td>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil"></i></button>
+                <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Vitamin C</td>
+            <td>0</td>
+            <td>$8</td>
+            <td><p class="text-danger">RESTOCK</p></td>
+            <td>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil"></i></button>
+                <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-12">
+<!-- MODAL FOR ADDING PRODUCTS -->
+<div class="modal fade" id="AddProductModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AddProductLabel">Product to be added</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="productName" class="form-control-label">Product name: </label>
+            <input type="text" class="form-control" id="productName"/>
+          </div>
 
+          <div class="form-group">
+            <label for="productPrice" class="form-control-label">Price: </label>
+            <input input type="number" min="0" class="form-control" id="productPrice"/>
+          </div>
+
+          <div class="form-group">
+            <label for="productQuantity" class="form-control-label">Quantity: </label>
+            <input input type="number" min="0" class="form-control" id="productQuantity"/>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Confirm</button>
+      </div>
+    </div>
   </div>
 </div>

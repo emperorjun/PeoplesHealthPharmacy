@@ -11,7 +11,7 @@ body {
 .card{
   margin-top: 20px;
 }
-.card:hover{
+.cardHoverable:hover{
   box-shadow: 0 1px 1px -6px #999;
   filter: brightness(95%);
 }
@@ -20,13 +20,15 @@ body {
   box-shadow: 0 8px 6px -6px #999;
   opacity: 0.9;
 }
-
 .outOfStockCard{
   border-bottom: #f44336 4px solid;
   box-shadow: 0 8px 6px -6px #999;
   opacity: 0.9;
 }
-
+.inventoryCard{
+  box-shadow: 0 8px 6px -6px #999;
+  opacity: 0.9;
+}
 .medicineStockCard{
   margin-top: 30px;
   box-shadow: 0 8px 6px -6px #999;
@@ -35,7 +37,7 @@ body {
 
 
 /*Adjusment to the default container size of bootstrap*/
-.container {
-  max-width: 85em;
+.container-fluid {
+  max-width: 90em;
   @include make-container();
 }

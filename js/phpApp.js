@@ -23,7 +23,7 @@ phpApp.config(function($routeProvider,$locationProvider){
 });
 
 //MAIN CONTROLLER
-phpApp.controller('mainCtrl', function($scope,$route){
+phpApp.controller('mainCtrl', function($scope,$route,$http){
 
   $scope.$route = $route;
 
