@@ -3,7 +3,7 @@
     <div class="card totalItemsCard" style="width: 100%;">
       <div class="card-body">
         <h5 class="card-title">Total Items</h5>
-        <p class="card-text">3</p>
+        <p class="card-text">{{product.length}}</p>
       </div>
     </div>
   </div>
@@ -11,7 +11,7 @@
     <div class="card inStockCard" style="width: 100%;">
       <div class="card-body">
         <h5 class="card-title">Items In-stock</h5>
-        <p class="card-text">2</p>
+        <p class="card-text">{{ product.length - (product | filter: { Product_QTY: '0' } : true).length }}</p>
       </div>
     </div>
   </div>
@@ -19,14 +19,14 @@
     <div class="card outOfStockCard" style="width: 100%;">
       <div class="card-body">
         <h5 class="card-title">Items Out-of-stock</h5>
-        <p class="card-text">1</p>
+        <p class="card-text">{{ (product | filter: { Product_QTY: '0' } : true).length }}</p>
       </div>
     </div>
   </div>
 </div>
 
 
-<div class="row">
+<div class="row" ng-init="displayData()">
   <div class="col-12">
     <div class="card inventoryCard" style="width: 100%;">
       <!-- SEARCHING AND FILTERING THE PRODUCTS IN THE TABLE -->
@@ -37,12 +37,12 @@
           </div>
           <div class="col-md-2 col-xs-4 text-center my-1">
             <div class="btn-group d-flex" role="group">
-              <button type="button" class="btn btn-outline-dark w-100"><i class="fa fa-sort-alpha-asc"></i> </button>
-              <button type="button" class="btn btn-outline-dark w-100"><i class="fa fa-sort-alpha-desc"></i> </button>
+              <button type="button" class="btn btn-outline-dark w-100" ng-click="alphabeticalFilter = 'Product_Name'"><i class="fa fa-sort-alpha-asc"></i> </button>
+              <button type="button" class="btn btn-outline-dark w-100" ng-click="alphabeticalFilter = '-Product_Name'"><i class="fa fa-sort-alpha-desc"></i> </button>
             </div>
           </div>
           <div class="col-md-2 col-xs-4 text-center my-1">
-            <button type="button" class="btn btn-outline-danger btn-block" data-toggle="button"><i class="fa fa-eye"></i> Show Restock Only</button>
+            <button type="button" class="btn btn-outline-danger btn-block" data-toggle="button" ng-model="restockToggle" ng-click="restockToggle = !restockToggle"><i class="fa fa-eye"></i> Show Restock Only</button>
           </div>
           <div class="col-md-2 col-xs-8 my-1">
             <button type="button" class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#AddProductModal"><i class="fa fa-plus"></i> Add Product</button>
@@ -60,57 +60,24 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Paracetamol</td>
+          <tr ng-repeat="p in product | showRestockOnly: restockToggle | filter: searchProductFilter | orderBy: alphabeticalFilter">
+            <td>{{p.Product_Name}}</td>
             <td>
               <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary btn-sm">-</button>
-                <button type="button" class="btn btn-secondary btn-sm" disabled>7</button>
-                <button type="button" class="btn btn-secondary btn-sm">+</button>
+                <button type="button" class="btn btn-secondary btn-sm" ng-click="decreaseQuantity(p.ID,p.Product_QTY)">-</button>
+                <button type="button" class="btn btn-secondary btn-sm" disabled>{{p.Product_QTY}}</button>
+                <button type="button" class="btn btn-secondary btn-sm" ng-click="increaseQuantity(p.ID,p.Product_QTY)">+</button>
               </div>
             </td>
-            <td>$12</td>
-            <td><i class="fa fa-check text-success"></i></td>
+            <td>{{p.Price}}</td>
+            <td>
+              <i class="fa fa-check text-success" ng-if="p.Product_QTY > 0"></i>
+              <span class="badge badge-danger" ng-if="p.Product_QTY == 0">RESTOCK</span>
+            </td>
             <td>
               <div class="btn-group" role="group">
                 <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil"></i></button>
-                <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Zitromax</td>
-            <td>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary btn-sm">-</button>
-                <button type="button" class="btn btn-secondary btn-sm" disabled>3</button>
-                <button type="button" class="btn btn-secondary btn-sm">+</button>
-              </div>
-            </td>
-            <td>$200</td>
-            <td><i class="fa fa-check text-success"></i></td>
-            <td>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil"></i></button>
-                <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Vitamin C</td>
-            <td>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary btn-sm">-</button>
-                <button type="button" class="btn btn-secondary btn-sm" disabled>0</button>
-                <button type="button" class="btn btn-secondary btn-sm">+</button>
-              </div>
-            </td>
-            <td>$8</td>
-            <td><span class="badge badge-danger">RESTOCK</span></td>
-            <td>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-warning btn-sm"><i class="fa fa-pencil"></i></button>
-                <button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-outline-danger btn-sm" ng-click="deleteProduct(p.ID)"><i class="fa fa-trash"></i></button>
               </div>
             </td>
           </tr>
@@ -119,6 +86,8 @@
     </div>
   </div>
 </div>
+
+
 
 <!-- MODAL FOR ADDING PRODUCTS -->
 <div class="modal fade" id="AddProductModal" tabindex="-1" role="dialog">
@@ -130,28 +99,30 @@
           <span>&times;</span>
         </button>
       </div>
+      <form ng-submit="insertData()">
       <div class="modal-body">
-        <form>
+
           <div class="form-group">
             <label for="productName" class="form-control-label">Product name: </label>
-            <input type="text" class="form-control" id="productName"/>
+            <input type="text" class="form-control" id="productName" ng-model="productName"/>
           </div>
 
           <div class="form-group">
             <label for="productPrice" class="form-control-label">Price: </label>
-            <input input type="number" min="0" class="form-control" id="productPrice"/>
+            <input input type="number" min="0" class="form-control" id="productPrice" ng-model="productPrice"/>
           </div>
 
           <div class="form-group">
             <label for="productQuantity" class="form-control-label">Quantity: </label>
-            <input input type="number" min="0" class="form-control" id="productQuantity"/>
+            <input input type="number" min="0" class="form-control" id="productQuantity" ng-model="productQuantity"/>
           </div>
-        </form>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Confirm</button>
+        <input type="submit" class="btn btn-success" value="confirm"/>
       </div>
+      </form>
     </div>
   </div>
 </div>
