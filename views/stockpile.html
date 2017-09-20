@@ -69,7 +69,7 @@
                 <button type="button" class="btn btn-secondary btn-sm" ng-click="increaseQuantity(p.ID,p.Product_QTY)">+</button>
               </div>
             </td>
-            <td>{{p.Price}}</td>
+            <td>${{p.Price}}</td>
             <td>
               <i class="fa fa-check text-success" ng-if="p.Product_QTY > 0"></i>
               <span class="badge badge-danger" ng-if="p.Product_QTY == 0">RESTOCK</span>
