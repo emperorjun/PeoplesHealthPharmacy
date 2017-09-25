@@ -26,6 +26,7 @@ phpApp.config(function($routeProvider,$locationProvider){
 phpApp.controller('mainCtrl', function($scope,$route,$http){
   $scope.$route = $route;
 
+
   $scope.insertData = function(){
   $http.post(
     "../insert.php",
@@ -43,6 +44,12 @@ phpApp.controller('mainCtrl', function($scope,$route,$http){
   $scope.displayData = function(){
     $http.get("../select.php").then(function(data){
       $scope.product = data.data;
+    });
+  }
+
+  $scope.displaySales = function(){
+    $http.get("../select_sales.php").then(function(data){
+      $scope.sales = data.data;
     });
   }
 
